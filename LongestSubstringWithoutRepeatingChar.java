@@ -63,11 +63,9 @@ public class LongestSubstringWithoutRepeatingChar {
         for(int high = 0; high < s.length(); high++)
         {
             char ch = s.charAt(high);
-            if(set.containsKey(ch))
-            {
-                if(set.get(ch) >= low)
-                low = set.get(ch) + 1;
-            }
+            
+            if(set.containsKey(ch) && set.get(ch) >= low)
+            low = set.get(ch) + 1;
 
             set.put(ch, high);
             maxLength = Math.max(maxLength, high - low + 1);
