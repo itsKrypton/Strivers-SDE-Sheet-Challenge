@@ -1,4 +1,5 @@
-import java.util.HashSet;
+import java.util.HashMap;
+//import java.util.HashSet;
 //import java.util.LinkedList;
 //import java.util.Queue;
 
@@ -26,8 +27,8 @@ public class LongestSubstringWithoutRepeatingChar {
         return maxLength;
     } */
 
-    // O(n) time and space, eliminated need of queue with two pointers.
-    public int lengthOfLongestSubstring(String s) {
+    // O(n + n) time and  O(n) space, eliminated need of queue with two pointers.
+    /* public int lengthOfLongestSubstring(String s) {
         HashSet<Character> set = new HashSet<>();  
 
         if(s.length() == 0) return 0;
@@ -46,6 +47,29 @@ public class LongestSubstringWithoutRepeatingChar {
             }
 
             set.add(ch);
+            maxLength = Math.max(maxLength, high - low + 1);
+        }
+
+        return maxLength;
+    } */
+
+    // Most efficient O(n) time and space
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> set = new HashMap<>();  
+        
+        int maxLength = 0;
+        int low = 0;
+
+        for(int high = 0; high < s.length(); high++)
+        {
+            char ch = s.charAt(high);
+            if(set.containsKey(ch))
+            {
+                if(set.get(ch) >= low)
+                low = set.get(ch) + 1;
+            }
+
+            set.put(ch, high);
             maxLength = Math.max(maxLength, high - low + 1);
         }
 
