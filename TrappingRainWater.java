@@ -8,12 +8,14 @@ public class TrappingRainWater {
         int maxElevation = 0;
         int[] elevationDiff = new int[height.length];
 
+        // Calculating max elevation towards the left from an index 
         for(int i = 0; i < height.length; i++)
         {
             elevationDiff[i] = maxElevation;
             maxElevation = Math.max(maxElevation, height[i]);
         }
 
+        // Calculating the minimum elevation between the right most elevation and left most elevation
         maxElevation = 0;
         int totalWater = 0;
         for(int i = height.length - 1; i >= 0; i--)
